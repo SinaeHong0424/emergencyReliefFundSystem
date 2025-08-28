@@ -359,4 +359,6 @@ tmp/
 !CONTRIBUTING.md
 !LICENSE
 
+# Build output
+target/
 
