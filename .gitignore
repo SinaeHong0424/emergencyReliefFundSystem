@@ -1,13 +1,13 @@
-- ============================================
-- Emergency Relief Fund System - .gitignore
-- Full-Stack Application (Spring Boot + Angular)
-- ============================================
+============================================
+Emergency Relief Fund System - .gitignore
+Full-Stack Application (Spring Boot + Angular)
+============================================
 
-- ============================================
-- BACKEND (Spring Boot / Maven / Java)
-- ============================================
+# ============================================
+# BACKEND (Spring Boot / Maven / Java)
+# ============================================
 
---- Maven ---
+# Maven build files
 backend/target/
 backend/**/target/
 backend/.mvn/
@@ -17,28 +17,13 @@ backend/mvnw.cmd
 !**/src/main/**/target/
 !**/src/test/**/target/
 
---- Gradle (if used) ---
-backend/.gradle/
-backend/build/
-!backend/**/src/main/**/build/
-!backend/**/src/test/**/build/
-
---- Java ---
+# Java binaries and packaged files
 *.class
 *.jar
 *.war
 *.ear
-*.zip
-*.tar.gz
-*.rar
-hs_err_pid*
-replay_pid*
 
---- Spring Boot ---
-backend/HELP.md
-backend/.spring-boot-devtools.properties
-
---- IntelliJ IDEA ---
+# IntelliJ IDEA
 backend/.idea/
 backend/*.iws
 backend/*.iml
@@ -47,7 +32,7 @@ backend/out/
 .idea/
 *.iml
 
---- Eclipse ---
+# Eclipse
 backend/.apt_generated/
 backend/.classpath
 backend/.factorypath
@@ -55,108 +40,96 @@ backend/.project
 backend/.settings/
 backend/.springBeans
 backend/.sts4-cache/
-backend/bin/
-.metadata
-.recommenders
 
---- VS Code ---
+# VS Code
 backend/.vscode/
-.vscode/
-*.code-workspace
 
---- NetBeans ---
+# NetBeans
 backend/nbproject/private/
 backend/nbbuild/
 backend/dist/
 backend/nbdist/
-backend/.nb-gradle/
 
---- Logs ---
+# Logs
 backend/*.log
 backend/logs/
-backend/spring.log
 
---- Database ---
+# Database
 backend/*.db
 backend/*.sqlite
 backend/*.h2.db
 
-- ============================================
-- FRONTEND (Angular / Node.js / TypeScript)
-- ============================================
+# ============================================
+# FRONTEND (Angular / Node.js / TypeScript)
+# ============================================
 
---- Node ---
+# Node dependencies
 frontend/node_modules/
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/lerna-debug.log*
-frontend/.pnpm-debug.log*
 
---- Angular ---
+# Angular compiled output & cache
 frontend/dist/
 frontend/tmp/
 frontend/out-tsc/
 frontend/bazel-out/
-frontend/.angular/
 frontend/.angular/cache/
 
---- TypeScript ---
+# npm/yarn logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# TypeScript build info
 frontend/*.tsbuildinfo
 frontend/*.tgz
 
---- Build outputs ---
-frontend/build/
-frontend/coverage/
-frontend/.nyc_output/
-
---- IDEs and editors ---
+# IDEs / editor folders
 frontend/.idea/
 frontend/.project
 frontend/.classpath
 frontend/.c9/
-frontend/*.launch
 frontend/.settings/
-frontend/*.sublime-workspace
+frontend/.history/
+
+# VS Code (keep workspace settings if committed explicitly)
 frontend/.vscode/*
 !frontend/.vscode/settings.json
 !frontend/.vscode/tasks.json
 !frontend/.vscode/launch.json
 !frontend/.vscode/extensions.json
-frontend/.history/*
 
---- Miscellaneous ---
+# Build outputs & coverage
+frontend/build/
+frontend/coverage/
+frontend/.nyc_output/
+
+# Miscellaneous
 frontend/.sass-cache/
 frontend/connect.lock
 frontend/typings/
 frontend/libpeerconnection.log
 frontend/testem.log
 
---- System Files ---
+# System files
 frontend/.DS_Store
 frontend/Thumbs.db
 
-- ============================================
-- DATABASE
-- ============================================
-
---- PostgreSQL ---
+# ============================================
+# DATABASE
+# ============================================
 *.sql.backup
 *.dump
 *.pgsql
-/postgresql/data/
+postgresql/data/
 pgdata/
-
---- Database tools ---
 *.dbvis
 *.dbeaver
 *.sql~
 
-- ============================================
-- ENVIRONMENT & CONFIGURATION
-- ============================================
-
---- Environment variables ---
+# ============================================
+# ENVIRONMENT & CONFIGURATION
+# ============================================
+# Environment files
 .env
 .env.local
 .env.development.local
@@ -165,106 +138,70 @@ pgdata/
 .env.*.local
 **/.env
 
---- Application properties ---
-- Uncomment if you want to ignore sensitive config
-- backend/src/main/resources/application-prod.yml
-- backend/src/main/resources/application-prod.properties
+# Sensitive config (optional)
+# Uncomment to ignore sensitive config templates
+# backend/src/main/resources/application-prod.yml
+# backend/src/main/resources/application-prod.properties
 
---- Secrets ---
+# Secrets
 **/secrets.yml
 **/credentials.yml
 **/*-secrets.json
 **/keystore.jks
 **/truststore.jks
 
-- ============================================
-- OPERATING SYSTEM
-- ============================================
+# ============================================
+# OPERATING SYSTEM
+# ============================================
 
---- macOS ---
+# macOS
 .DS_Store
 .AppleDouble
-.LSOverride
-Icon
-._*
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
+Spotlight-V100
 .TemporaryItems
 .Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
 
---- Windows ---
+# Windows
 Thumbs.db
-Thumbs.db:encryptable
 ehthumbs.db
-ehthumbs_vista.db
 *.stackdump
 [Dd]esktop.ini
 $RECYCLE.BIN/
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-*.lnk
 
---- Linux ---
+# Linux
 *~
 .fuse_hidden*
-.directory
 .Trash-*
 .nfs*
 
-- ============================================
-- DEVELOPMENT TOOLS
-- ============================================
-
---- Git ---
+# ============================================
+# DEVELOPMENT TOOLS
+# ============================================
 *.orig
 *.rej
 *.swp
 *.swo
-*~.nib
-
---- Backup files ---
-*.bak
-*.gho
-*.ori
-*.orig
-*.tmp
 *~
 
---- Package managers ---
+# Backup files
+*.bak
+*.tmp
+*.temp
+
+# Package manager backups
 package-lock.json.backup
 yarn.lock.backup
 
-- ============================================
-- DOCUMENTATION & NOTES
-- ============================================
-
---- Personal notes (keep TODO.md if needed) ---
-NOTES.md
-PRIVATE.md
-scratch.txt
-notes.txt
-
---- Documentation build ---
+# ============================================
+# DOCUMENTATION & NOTES
+# ============================================
 docs/site/
 docs/_build/
 docs/.buildinfo
 
-- ============================================
-- TESTING
-- ============================================
-
---- Test reports ---
+# ============================================
+# TESTING
+# ============================================
 backend/test-results/
 backend/test-reports/
 frontend/test-results/
@@ -273,92 +210,49 @@ coverage/
 *.lcov
 .nyc_output/
 
---- JUnit ---
-backend/TEST-*.xml
-
-- ============================================
-- DEPLOYMENT & CI/CD
-- ============================================
-
---- Docker ---
+# ============================================
+# DEPLOYMENT & CI/CD
+# ============================================
 docker-compose.override.yml
 .docker/
-
---- Kubernetes ---
 *.kubeconfig
 k8s-secrets.yml
-
---- AWS ---
 .aws-sam/
 .elasticbeanstalk/
+.vercel/
 
---- Heroku ---
-.heroku/
-
---- Vercel ---
-.vercel
-
-- ============================================
-- SECURITY & SENSITIVE DATA
-- ============================================
-
---- SSL Certificates ---
+# ============================================
+# SECURITY & SENSITIVE DATA
+# ============================================
 *.pem
 *.key
 *.crt
 *.csr
 *.p12
 *.pfx
-
---- SSH Keys ---
 id_rsa
 id_rsa.pub
 *.ppk
-
---- API Keys & Tokens ---
 **/api-keys.json
 **/tokens.json
 jwt-secret.txt
 
-- ============================================
-- PROJECT SPECIFIC
-- ============================================
-
---- Upload directories ---
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
 uploads/
 temp-uploads/
 file-storage/
-
---- Generated documentation ---
 javadoc/
 typedoc/
-
---- Cache ---
 .cache/
-*.cache
 
---- Temporary files ---
-*.tmp
-*.temp
-temp/
-tmp/
-
-- ============================================
-- KEEP THESE FILES (Override exclusions)
-- ============================================
-
-- Keep important config examples
+# ============================================
+# KEEP THESE FILES (Override exclusions)
+# ============================================
 !backend/src/main/resources/application.yml.example
 !.env.example
-
-- Keep GitHub Actions
 !.github/
-
-- Keep documentation
 !README.md
-!CONTRIBUTING.md
 !LICENSE
-
-# Build output
-target/
 
