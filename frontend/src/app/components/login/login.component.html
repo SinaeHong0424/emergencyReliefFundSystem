@@ -1,0 +1,182 @@
+<!-- Skip to main content link - WCAG 2.4.1 -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<main id="main-content" role="main" aria-labelledby="page-title">
+  <div class="login-container">
+    <div class="login-card">
+      
+      <!-- Header with proper heading hierarchy - WCAG 1.3.1 -->
+      <header class="login-header">
+        <h1 id="page-title" class="system-title">
+          NYS Emergency Relief System
+        </h1>
+        <h2 class="page-subtitle">Login to Your Account</h2>
+      </header>
+
+      <!-- Error alert with ARIA live region - WCAG 4.1.3 -->
+      <div 
+        *ngIf="error" 
+        class="alert alert-error" 
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <span class="alert-icon" aria-hidden="true">⚠</span>
+        <span class="alert-message">{{ error }}</span>
+      </div>
+
+      <!-- Login form with proper labels and ARIA - WCAG 3.3.2, 4.1.3 -->
+      <form 
+        [formGroup]="loginForm" 
+        (ngSubmit)="onSubmit()" 
+        novalidate
+        aria-labelledby="page-title"
+      >
+        
+        <!-- Username field -->
+        <div class="form-group">
+          <label for="username" class="required">
+            Username
+            <span class="required-indicator" aria-label="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            formControlName="username"
+            class="form-control"
+            [class.is-invalid]="f['username'].invalid && f['username'].touched"
+            aria-required="true"
+            aria-describedby="username-error username-help"
+            autocomplete="username"
+            [attr.aria-invalid]="f['username'].invalid && f['username'].touched ? 'true' : null"
+          />
+          <small id="username-help" class="form-text">
+            Enter your NYS Emergency Relief System username
+          </small>
+          <div 
+            id="username-error" 
+            class="error-message" 
+            role="alert"
+            aria-live="polite"
+            *ngIf="f['username'].invalid && f['username'].touched"
+          >
+            <span aria-hidden="true">⚠</span>
+            Username is required
+          </div>
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+          <label for="password" class="required">
+            Password
+            <span class="required-indicator" aria-label="required">*</span>
+          </label>
+          <div class="password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              name="password"
+              formControlName="password"
+              class="form-control password-input"
+              [class.is-invalid]="f['password'].invalid && f['password'].touched"
+              aria-required="true"
+              aria-describedby="password-error password-help"
+              autocomplete="current-password"
+              [attr.aria-invalid]="f['password'].invalid && f['password'].touched ? 'true' : null"
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+              aria-controls="password"
+            >
+              <span class="toggle-text">{{ showPassword ? 'Hide' : 'Show' }}</span>
+            </button>
+          </div>
+          <small id="password-help" class="form-text">
+            Enter your secure password
+          </small>
+          <div 
+            id="password-error" 
+            class="error-message" 
+            role="alert"
+            aria-live="polite"
+            *ngIf="f['password'].invalid && f['password'].touched"
+          >
+            <span aria-hidden="true">⚠</span>
+            Password is required
+          </div>
+        </div>
+
+        <!-- Forgot Password Link -->
+        <div class="forgot-password-link">
+          <a 
+            routerLink="/forgot-password"
+            class="link-primary"
+            aria-label="Reset your password"
+          >
+            Forgot your password?
+          </a>
+        </div>
+
+        <!-- Submit button with loading state - WCAG 2.2.2 -->
+        <button 
+          type="submit" 
+          class="btn-primary btn-block" 
+          [disabled]="loading || loginForm.invalid"
+          [attr.aria-busy]="loading"
+        >
+          <span *ngIf="!loading">Login</span>
+          <span *ngIf="loading">
+            <span class="spinner" aria-hidden="true"></span>
+            Logging in...
+          </span>
+        </button>
+
+        <!-- Register link with clear context - WCAG 2.4.4 -->
+        <div class="register-link" role="navigation" aria-label="Account registration">
+          <p>
+            Don't have an account? 
+            <a 
+              routerLink="/register" 
+              class="link-primary"
+              aria-label="Navigate to registration page"
+            >
+              Register here
+            </a>
+          </p>
+        </div>
+
+      </form>
+
+      <!-- Accessibility settings shortcut -->
+      <div class="accessibility-footer">
+        <button
+          type="button"
+          class="btn-link"
+          (click)="openAccessibilitySettings()"
+          aria-label="Open accessibility settings"
+        >
+          <span aria-hidden="true">♿</span>
+          Accessibility Settings
+        </button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Loading overlay with proper ARIA - WCAG 4.1.3 -->
+<div 
+  *ngIf="loading" 
+  class="loading-overlay" 
+  role="progressbar" 
+  aria-valuetext="Loading, please wait"
+  aria-live="polite"
+  aria-busy="true"
+>
+  <div class="spinner-large" aria-hidden="true"></div>
+  <p class="loading-text">Authenticating...</p>
+</div>

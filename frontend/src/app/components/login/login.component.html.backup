@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>NYS Emergency Relief System</h1>
+      <h2>Login</h2>
+    </div>
+
+    <div class="alert alert-error" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          [class.is-invalid]="f['username'].invalid && f['username'].touched"
+        />
+        <div class="error-message" *ngIf="f['username'].invalid && f['username'].touched">
+          Username is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="f['password'].invalid && f['password'].touched"
+        />
+        <div class="error-message" *ngIf="f['password'].invalid && f['password'].touched">
+          Password is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary btn-block" [disabled]="loading">
+        <span *ngIf="!loading">Login</span>
+        <span *ngIf="loading">Logging in...</span>
+      </button>
+    </form>
+
+    <div class="register-link">
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </div>
+  </div>
+</div>
