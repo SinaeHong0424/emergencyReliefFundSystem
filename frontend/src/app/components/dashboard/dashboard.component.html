@@ -1,0 +1,107 @@
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="dashboard-header" role="banner">
+  <div class="header-content">
+    <div class="logo-section"><h1 class="system-title">NYS Emergency Relief</h1></div>
+    <div class="user-section">
+      <span class="user-name">
+        {{ currentUser?.fullName }} 
+        <span class="role-badge">({{ currentUser?.role === 'ROLE_ADMIN' ? 'Admin' : 'User' }})</span>
+      </span>
+      <button type="button" class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" role="main" class="dashboard-main">
+  <div class="container">
+    <section class="welcome-section">
+      <h2>Welcome back, {{ currentUser?.fullName }}!</h2>
+      <p class="subtitle">Here is your dashboard overview.</p>
+    </section>
+
+    <div *ngIf="loading" class="loading">
+      <div class="spinner-large"></div>
+      <p>Loading data...</p>
+    </div>
+
+    <div *ngIf="!loading">
+      
+      <section *ngIf="currentUser?.role === 'ROLE_ADMIN'" class="admin-section">
+        <h3 class="section-title">Pending Claims Review</h3>
+        
+        <div *ngIf="pendingClaims.length === 0" class="no-claims">
+          <p>No pending claims to review at this moment.</p>
+        </div>
+
+        <div *ngIf="pendingClaims.length > 0" class="table-container">
+          <table class="claims-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Applicant</th>
+                <th>Disaster Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let claim of pendingClaims">
+                <td>#{{ claim.id }}</td>
+                <td>{{ claim.user?.fullName || 'Unknown' }}</td>
+                <td>{{ getDisasterTypeLabel(claim.disasterType) }}</td>
+                <td>${{ claim.requestAmount | number:'1.2-2' }}</td>
+                <td>{{ claim.createdAt | date:'MMM d, y' }}</td>
+                <td class="action-buttons">
+                  <button class="btn btn-sm btn-approve" (click)="processClaim(claim.id, 'APPROVED')">Approve</button>
+                  <button class="btn btn-sm btn-reject" (click)="processClaim(claim.id, 'REJECTED')">Reject</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <section *ngIf="currentUser?.role !== 'ROLE_ADMIN'" class="user-section">
+        <div class="section-header">
+          <h3 class="section-title">My Recent Claims</h3>
+          <button class="btn-new-claim" (click)="navigateToNewClaim()">+ New Claim</button>
+        </div>
+
+        <div *ngIf="recentClaims.length === 0" class="no-claims">
+          <p>You haven't submitted any claims yet.</p>
+        </div>
+
+        <div *ngIf="recentClaims.length > 0" class="table-container">
+          <table class="claims-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let claim of recentClaims">
+                <td>#{{ claim.id }}</td>
+                <td>{{ getDisasterTypeLabel(claim.disasterType) }}</td>
+                <td>${{ claim.requestAmount | number:'1.2-2' }}</td>
+                <td>
+                  <span class="status-badge" [ngClass]="getStatusClass(claim.status)">
+                    {{ claim.status }}
+                  </span>
+                </td>
+                <td>{{ claim.createdAt | date:'MMM d, y' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</main>
